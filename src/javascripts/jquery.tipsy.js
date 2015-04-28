@@ -3,7 +3,21 @@
 // (c) 2008-2010 jason frame [jason@onehackoranother.com]
 // released under the MIT license
 
-(function($, window, undefined) {
+// PropertyPal
+// Updated to add AMD module support
+
+(function (factory) {
+	if (typeof define === 'function' && define.amd) {
+		// AMD
+		define(['jquery'], factory);
+	} else if (typeof exports === 'object') {
+		// CommonJS
+		factory(require('jquery'));
+	} else {
+		// Browser globals
+		factory(jQuery);
+	}
+}(function ($) {
 
     function maybeCall(thing, ctx) {
         return (typeof thing === 'function') ? (thing.call(ctx)) : thing;
@@ -406,4 +420,4 @@
         }
     };
     
-})(jQuery, window);
+}));
